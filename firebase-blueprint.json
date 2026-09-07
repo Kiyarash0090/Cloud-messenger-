@@ -1,0 +1,73 @@
+{
+  "entities": {
+    "User": {
+      "title": "User",
+      "description": "User profile information",
+      "type": "object",
+      "properties": {
+        "uid": { "type": "string" },
+        "username": { "type": "string" },
+        "displayName": { "type": "string" },
+        "photoURL": { "type": "string" },
+        "bio": { "type": "string" },
+        "lastSeen": { "type": "string", "format": "date-time" },
+        "isOnline": { "type": "boolean" },
+        "publicKey": { "type": "string", "description": "Base64 encoded public key for E2EE" }
+      },
+      "required": ["uid", "username"]
+    },
+    "Chat": {
+      "title": "Chat",
+      "description": "Conversation between users, groups, or channels",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "type": { "type": "string", "enum": ["dm", "group", "channel"] },
+        "memberUids": { "type": "array" },
+        "name": { "type": "string" },
+        "photoURL": { "type": "string" },
+        "description": { "type": "string" },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "lastMessage": { "type": "object" },
+        "admins": { "type": "array" },
+        "ownerUid": { "type": "string" }
+      },
+      "required": ["id", "type", "memberUids"]
+    },
+    "Message": {
+      "title": "Message",
+      "description": "A single message in a chat",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "chatId": { "type": "string" },
+        "senderId": { "type": "string" },
+        "text": { "type": "string", "description": "Encrypted text content" },
+        "type": { "type": "string", "enum": ["text", "image", "video", "audio", "file", "voice", "sticker", "gif"] },
+        "mediaUrl": { "type": "string" },
+        "fileName": { "type": "string" },
+        "replyTo": { "type": "string" },
+        "deleted": { "type": "boolean" },
+        "edited": { "type": "boolean" },
+        "reactions": { "type": "object" },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "iv": { "type": "string", "description": "Initialization Vector for E2EE" }
+      },
+      "required": ["id", "chatId", "senderId", "createdAt"]
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": "User",
+      "description": "User profiles"
+    },
+    "/chats/{chatId}": {
+      "schema": "Chat",
+      "description": "Chat sessions"
+    },
+    "/chats/{chatId}/messages/{messageId}": {
+      "schema": "Message",
+      "description": "Messages within a chat"
+    }
+  }
+}

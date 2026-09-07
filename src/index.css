@@ -1,0 +1,501 @@
+@import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@100..900&family=Noto+Color+Emoji&display=swap');
+@import "tailwindcss";
+
+@variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --color-brand-bg: var(--brand-bg);
+  --color-brand-sidebar: var(--brand-sidebar);
+  --color-brand-panel: var(--brand-panel);
+  --color-brand-input: var(--brand-input);
+  --color-brand-text: var(--brand-text);
+  --color-brand-border: var(--brand-border);
+  --color-brand-accent: var(--brand-accent);
+  --color-brand-accent-hover: var(--brand-accent-hover);
+  --color-brand-accent-glow: var(--brand-accent-glow);
+  --color-brand-accent-text: var(--brand-accent-text);
+  --color-brand-bubble-me: var(--brand-bubble-me);
+  --color-brand-bubble-me-hover: var(--brand-bubble-me-hover);
+  --color-brand-player-bg: var(--brand-player-bg);
+  --color-brand-header-bg: var(--brand-header-bg);
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  --font-farsi: "Inter", "Vazirmatn", "Tahoma", "Arial", sans-serif, "Noto Color Emoji";
+}
+
+@layer base {
+  :root, .dark {
+    --brand-bg: #0e1621;
+    --brand-sidebar: #17212b;
+    --brand-panel: #1e2a38;
+    --brand-input: #242f3d;
+    --brand-text: #F8FAFC;
+    --brand-border: rgba(255, 255, 255, 0.08);
+    --brand-accent: #2b86d9;
+    --brand-accent-hover: #2275c2;
+    --brand-accent-glow: rgba(43, 134, 217, 0.3);
+    --brand-accent-text: #64b5f6;
+    --brand-bubble-me: #2b5278;
+    --brand-bubble-me-hover: #33618d;
+    --brand-player-bg: rgba(23, 33, 43, 0.96);
+    --brand-header-bg: rgba(14, 22, 33, 0.88);
+    --logo-text: #F8FAFC;
+  }
+
+  .light {
+    --brand-bg: #f3f4f6;
+    --brand-sidebar: #ffffff;
+    --brand-panel: #ffffff;
+    --brand-input: #e5e7eb;
+    --brand-text: #111827;
+    --brand-border: rgba(0, 0, 0, 0.08);
+    --brand-accent: #2563eb;
+    --brand-accent-hover: #1d4ed8;
+    --brand-accent-glow: rgba(37, 99, 235, 0.25);
+    --brand-accent-text: #2563eb;
+    --brand-bubble-me: #2563eb;
+    --brand-bubble-me-hover: #1d4ed8;
+    --brand-player-bg: rgba(255, 255, 255, 0.96);
+    --brand-header-bg: rgba(255, 255, 255, 0.9);
+    --logo-text: #111827;
+  }
+
+  html, body, #root {
+    @apply h-full w-full overflow-hidden bg-brand-bg text-brand-text transition-colors duration-200;
+  }
+}
+
+/* Target ALL scrollbars globally across the app to ensure an elegant experience */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(15, 23, 42, 0.2) transparent;
+}
+
+/* For Dark Mode (Standard CSS Scrollbar API Support) */
+.dark * {
+  scrollbar-color: rgba(248, 250, 252, 0.2) transparent;
+}
+
+/* Webkit browser scrollbar styling (Sleek, adaptive, beautifully thin) */
+::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(15, 23, 42, 0.15);
+  border-radius: 9999px;
+  transition: background 0.2s ease-in-out;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(15, 23, 42, 0.35);
+}
+
+/* Beautiful dark mode adaptivity for all scrollbars */
+.dark ::-webkit-scrollbar-thumb {
+  background: rgba(248, 250, 252, 0.22);
+}
+
+.dark ::-webkit-scrollbar-thumb:hover {
+  background: rgba(248, 250, 252, 0.42);
+}
+
+/* Specialized classes/elements for extra styling or overrides */
+.custom-scrollbar::-webkit-scrollbar,
+.custom-scrollbar-thin::-webkit-scrollbar {
+  width: 3px;
+  height: 3px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb,
+.custom-scrollbar-thin::-webkit-scrollbar-thumb {
+  background: rgba(15, 23, 42, 0.15);
+}
+
+.dark .custom-scrollbar::-webkit-scrollbar-thumb,
+.dark .custom-scrollbar-thin::-webkit-scrollbar-thumb {
+  background: rgba(248, 250, 252, 0.2);
+}
+
+.dark .custom-scrollbar::-webkit-scrollbar-thumb:hover,
+.dark .custom-scrollbar-thin::-webkit-scrollbar-thumb:hover {
+  background: rgba(248, 250, 252, 0.4);
+}
+
+/* Styling React Emoji Picker lists directly to match */
+.EmojiPickerReact .epr-body::-webkit-scrollbar,
+.EmojiPickerReact .epr-emoji-list::-webkit-scrollbar,
+.epr-body::-webkit-scrollbar,
+.epr-emoji-list::-webkit-scrollbar,
+.epr-emoji-picker::-webkit-scrollbar {
+  width: 5px !important;
+  height: 5px !important;
+}
+
+.EmojiPickerReact .epr-body::-webkit-scrollbar-thumb,
+.EmojiPickerReact .epr-emoji-list::-webkit-scrollbar-thumb,
+.epr-body::-webkit-scrollbar-thumb,
+.epr-emoji-list::-webkit-scrollbar-thumb,
+.epr-emoji-picker::-webkit-scrollbar-thumb {
+  background: rgba(15, 23, 42, 0.2) !important;
+  border-radius: 9999px !important;
+}
+
+.dark .EmojiPickerReact .epr-body::-webkit-scrollbar-thumb,
+.dark .EmojiPickerReact .epr-emoji-list::-webkit-scrollbar-thumb,
+.dark .epr-body::-webkit-scrollbar-thumb,
+.dark .epr-emoji-list::-webkit-scrollbar-thumb,
+.dark .epr-emoji-picker::-webkit-scrollbar-thumb {
+  background: rgba(248, 250, 252, 0.22) !important;
+}
+
+/* 
+ * Programmatically override the Islamic Republic flag emoji with the historic, 
+ * beautiful Persian Lion & Sun (شیر و خورشید) flag in any default browser/component lists 
+ * such as the emoji-picker-react popover.
+ */
+img[alt="🇮🇷"],
+img[aria-label="🇮🇷"],
+img[src*="1f1ee-1f1f7"],
+img[src*="1f1ee_1f1f7"],
+img[src*="1F1EE-1F1F7"],
+button[aria-label*="iran"] img,
+button[aria-label*="Iran"] img,
+ul.epr-emoji-list button[aria-label*="iran"] img,
+ul.epr-emoji-list button[aria-label*="Iran"] img {
+  content: url("/src/assets/images/iran_lion_sun_emoji.png") !important;
+}
+
+/* 
+ * Prevent standard system emojis or double-drawn transparent texts from showing up
+ * during mouse drag/selection on overlay-based transparent input fields on Chrome, Safari, and Firefox.
+ */
+#chat-message-input::selection,
+#sidebar-search-input::selection,
+.fancy-transparent-input::selection {
+  color: transparent !important;
+  -webkit-text-fill-color: transparent !important;
+  text-shadow: none !important;
+  background-color: rgba(59, 130, 246, 0.22) !important;
+}
+
+#chat-message-input::-moz-selection,
+#sidebar-search-input::-moz-selection,
+.fancy-transparent-input::-moz-selection {
+  color: transparent !important;
+  text-shadow: none !important;
+  background-color: rgba(59, 130, 246, 0.22) !important;
+}
+
+/* ═══════════════════════════════════════════════
+   TOOLTIP - Instant CSS tooltip (replaces slow title)
+   ═══════════════════════════════════════════════ */
+[data-tooltip] {
+  position: relative;
+}
+[data-tooltip]::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  bottom: calc(100% + 8px);
+  left: 50%;
+  transform: translateX(-50%) scale(0.9);
+  padding: 5px 10px;
+  border-radius: 8px;
+  background: rgba(15, 23, 42, 0.95);
+  color: #f1f5f9;
+  font-size: 11px;
+  font-weight: 600;
+  white-space: nowrap;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.15s, transform 0.15s;
+  z-index: 200;
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255,255,255,0.08);
+  box-shadow: 0 4px 16px rgba(0,0,0,0.35);
+}
+.light [data-tooltip]::after {
+  background: rgba(255, 255, 255, 0.95);
+  color: #1e293b;
+  border: 1px solid rgba(0,0,0,0.08);
+  box-shadow: 0 4px 16px rgba(0,0,0,0.12);
+}
+[data-tooltip]:hover::after {
+  opacity: 1;
+  transform: translateX(-50%) scale(1);
+}
+[data-tooltip-dir="rtl"]::after {
+  direction: rtl;
+}
+
+/* ═══════════════════════════════════════════════
+   RIPPLE EFFECT - For mobile dock & buttons
+   ═══════════════════════════════════════════════ */
+.ripple-container {
+  position: relative;
+  overflow: hidden;
+}
+.ripple-effect {
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.25);
+  transform: scale(0);
+  animation: ripple-expand 0.5s ease-out forwards;
+  pointer-events: none;
+}
+@keyframes ripple-expand {
+  to {
+    transform: scale(3);
+    opacity: 0;
+  }
+}
+
+/* ═══════════════════════════════════════════════
+   LOADING SKELETONS
+   ═══════════════════════════════════════════════ */
+.skeleton {
+  background: linear-gradient(90deg, rgba(255,255,255,0.04) 25%, rgba(255,255,255,0.08) 50%, rgba(255,255,255,0.04) 75%);
+  background-size: 200% 100%;
+  animation: skeleton-shimmer 1.5s ease-in-out infinite;
+  border-radius: 8px;
+}
+.light .skeleton {
+  background: linear-gradient(90deg, rgba(0,0,0,0.04) 25%, rgba(0,0,0,0.08) 50%, rgba(0,0,0,0.04) 75%);
+  background-size: 200% 100%;
+}
+@keyframes skeleton-shimmer {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+/* ═══════════════════════════════════════════════
+   ANIMATED GRADIENT - Auth page background
+   ═══════════════════════════════════════════════ */
+@keyframes gradient-shift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+.animated-gradient-bg {
+  background: linear-gradient(-45deg, #0e1621, #1a1a3e, #0d2137, #1e1533, #0e1621);
+  background-size: 400% 400%;
+  animation: gradient-shift 12s ease infinite;
+}
+.light .animated-gradient-bg {
+  background: linear-gradient(-45deg, #dbeafe, #ede9fe, #e0f2fe, #f3e8ff, #dbeafe);
+  background-size: 400% 400%;
+}
+
+/* ═══════════════════════════════════════════════
+   GLOW BORDER - Input focus glow
+   ═══════════════════════════════════════════════ */
+.glow-border:focus-within {
+  box-shadow: 0 0 0 2px rgba(43, 134, 217, 0.35), 0 0 20px rgba(43, 134, 217, 0.15);
+  border-color: rgba(43, 134, 217, 0.6) !important;
+}
+.light .glow-border:focus-within {
+  box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.2), 0 0 12px rgba(37, 99, 235, 0.1);
+  border-color: rgba(37, 99, 235, 0.5) !important;
+}
+
+/* ═══════════════════════════════════════════════
+   ANIMATED RING - Online user avatar ring
+   ═══════════════════════════════════════════════ */
+@keyframes ring-rotate {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+.animated-ring {
+  position: relative;
+}
+.animated-ring::before {
+  content: '';
+  position: absolute;
+  inset: -3px;
+  border-radius: 50%;
+  background: conic-gradient(from 0deg, #22c55e, transparent 40%, transparent 60%, #22c55e);
+  animation: ring-rotate 3s linear infinite;
+  z-index: -1;
+}
+
+/* ═══════════════════════════════════════════════
+   NAV ACTIVE INDICATOR - Vertical pill
+   ═══════════════════════════════════════════════ */
+.nav-active-indicator {
+  position: absolute;
+  width: 3px;
+  height: 20px;
+  background: #2b86d9;
+  border-radius: 0 4px 4px 0;
+  left: -2px;
+  top: 50%;
+  transform: translateY(-50%);
+  box-shadow: 0 0 8px rgba(43, 134, 217, 0.5);
+}
+.light .nav-active-indicator {
+  background: #2563eb;
+  box-shadow: 0 0 6px rgba(37, 99, 235, 0.35);
+}
+[dir="rtl"] .nav-active-indicator {
+  left: auto;
+  right: -2px;
+  border-radius: 4px 0 0 4px;
+}
+
+/* ═══════════════════════════════════════════════
+   PARALLAX - Cover photo scroll effect
+   ═══════════════════════════════════════════════ */
+.parallax-cover {
+  will-change: transform;
+  transition: transform 0.1s linear;
+}
+
+/* ═══════════════════════════════════════════════
+   LIGHTBOX - Full-screen image overlay
+   ═══════════════════════════════════════════════ */
+.lightbox-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 999;
+  background: rgba(0, 0, 0, 0.92);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: zoom-out;
+  backdrop-filter: blur(12px);
+}
+.lightbox-overlay img {
+  max-width: 95vw;
+  max-height: 92vh;
+  object-fit: contain;
+  border-radius: 8px;
+  box-shadow: 0 8px 40px rgba(0,0,0,0.6);
+}
+
+/* ═══════════════════════════════════════════════
+   REDUCED MOTION - Accessibility
+   ═══════════════════════════════════════════════ */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  .skeleton { animation: none; background: rgba(255,255,255,0.06); }
+  .light .skeleton { animation: none; background: rgba(0,0,0,0.06); }
+  .animated-gradient-bg { animation: none; }
+  .animated-ring::before { animation: none; }
+  [data-tooltip]::after { transition: none; }
+  .ripple-effect { animation: none; display: none; }
+}
+
+/* ═══════════════════════════════════════════════
+   SAFE AREA - iPhone notch support
+   ═══════════════════════════════════════════════ */
+@supports (padding-bottom: env(safe-area-inset-bottom)) {
+  .safe-area-bottom {
+    padding-bottom: calc(env(safe-area-inset-bottom) + 8px);
+  }
+}
+
+/* ═══════════════════════════════════════════════
+   SLIDE-TO-DELETE - Swipe gesture hint
+   ═══════════════════════════════════════════════ */
+.slide-delete-bg {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding-right: 20px;
+  background: linear-gradient(90deg, transparent 60%, #dc2626 100%);
+  border-radius: inherit;
+}
+[dir="rtl"] .slide-delete-bg {
+  background: linear-gradient(-90deg, transparent 60%, #dc2626 100%);
+  justify-content: flex-start;
+  padding-right: 0;
+  padding-left: 20px;
+}
+
+/* ═══════════════════════════════════════════════
+   CHECKMARK ANIMATION - Send success
+   ═══════════════════════════════════════════════ */
+@keyframes checkmark-pop {
+  0% { transform: scale(0); opacity: 0; }
+  50% { transform: scale(1.3); }
+  100% { transform: scale(1); opacity: 1; }
+}
+.checkmark-pop {
+  animation: checkmark-pop 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+}
+
+/* ═══════════════════════════════════════════════
+   VOICE WAVEFORM - Recording indicator
+   ═══════════════════════════════════════════════ */
+@keyframes waveform {
+  0%, 100% { height: 4px; }
+  50% { height: 16px; }
+}
+.waveform-bar {
+  width: 3px;
+  background: #ef4444;
+  border-radius: 2px;
+  animation: waveform 0.6s ease-in-out infinite;
+}
+.waveform-bar:nth-child(2) { animation-delay: 0.1s; }
+.waveform-bar:nth-child(3) { animation-delay: 0.2s; }
+.waveform-bar:nth-child(4) { animation-delay: 0.3s; }
+.waveform-bar:nth-child(5) { animation-delay: 0.15s; }
+
+/* ═══════════════════════════════════════════════
+   TOAST STACKING
+   ═══════════════════════════════════════════════ */
+.toast-container {
+  position: fixed;
+  top: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 200;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  pointer-events: none;
+}
+.toast-container > * {
+  pointer-events: auto;
+}
+
+/* ═══════════════════════════════════════════════
+   TYPING INDICATOR - Bouncing dots
+   ═══════════════════════════════════════════════ */
+@keyframes typing-dot {
+  0%, 60%, 100% { transform: translateY(0); opacity: 0.4; }
+  30% { transform: translateY(-4px); opacity: 1; }
+}
+
+/* ═══════════════════════════════════════════════
+   COMPOUND GROUPING - Message spacing
+   ═══════════════════════════════════════════════ */
+.msg-group-same { margin-bottom: -2px; }
+.msg-group-diff { margin-top: 12px; }
+
+/* ═══════════════════════════════════════════════
+   SLIDE-IN MESSAGE ANIMATION
+   ═══════════════════════════════════════════════ */
+@keyframes msg-slide-right {
+  from { opacity: 0; transform: translateX(30px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+@keyframes msg-slide-left {
+  from { opacity: 0; transform: translateX(-30px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+.msg-anim-rtl { animation: msg-slide-left 0.25s ease-out; }
+.msg-anim-ltr { animation: msg-slide-right 0.25s ease-out; }
+
